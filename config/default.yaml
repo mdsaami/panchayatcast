@@ -1,0 +1,65 @@
+project:
+  name: "PanchayatCast-Weather-Downscaling"
+  domain: "Disaster Management & Agro-Meteorology"
+  team: "Team Nova"
+  target_variable: "temperature_2m"
+  baseline_source: "GFS_Seamless"
+  reference_source: "ERA5_Land_Reanalysis"
+  resolution:
+    spatial_input_gfs: "~25 km"
+    spatial_input_era5land: "~9-11 km"
+    spatial_terrain_srtm: "30 m"
+    downscaled_target: "Panchayat-level point / local cluster"
+
+period:
+  start_date: "2024-08-01"
+  end_date: "2024-08-31"
+  temporal_resolution: "hourly"
+  hours_per_month: 744
+
+features:
+  weather:
+    - "temperature_2m_gfs"
+    - "relative_humidity_2m_gfs"
+    - "surface_pressure_gfs"
+    - "wind_speed_10m_gfs"
+    - "precipitation_gfs"
+  time:
+    - "hour_sin"
+    - "hour_cos"
+    - "day_of_year_sin"
+    - "day_of_year_cos"
+  terrain:
+    - "elevation_local"
+    - "elevation_diff"        # z_local - z_gfs
+    - "slope_deg"
+    - "aspect_sin"
+    - "aspect_cos"
+    - "relief_500m"
+    - "relief_1000m"
+    - "elev_std_1000m"
+  surface:
+    - "cropland_fraction"
+    - "builtup_fraction"
+    - "tree_fraction"
+    - "water_fraction"
+    - "bare_fraction"
+  vegetation:
+    - "ndvi_aligned"
+
+validation:
+  n_spatial_folds: 5
+  random_seed: 42
+  temporal_holdout_date: "2024-08-22"
+
+uncertainty:
+  quantiles: [0.10, 0.50, 0.90]
+  conformal_significance: 0.10 # 90% prediction interval
+
+advisory:
+  thermal_stress_deg_c: 35.0
+  thermal_extreme_deg_c: 40.0
+  spray_max_wind_kmh: 18.0
+  spray_washoff_precip_mm: 1.5
+  fungal_risk_rh_min: 80.0
+  fungal_risk_temp_range: [20.0, 28.0]

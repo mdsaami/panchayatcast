@@ -1,0 +1,150 @@
+{
+  "locations": [
+    {
+      "id": "D01",
+      "name": "Dehradun",
+      "state": "Uttarakhand",
+      "latitude": 30.3165,
+      "longitude": 78.0322,
+      "elevation_m": 651,
+      "zone": "Sub-Himalayan Foothills"
+    },
+    {
+      "id": "D02",
+      "name": "Shimla",
+      "state": "Himachal Pradesh",
+      "latitude": 31.1048,
+      "longitude": 77.1734,
+      "elevation_m": 2204,
+      "zone": "High Western Himalayas"
+    },
+    {
+      "id": "D03",
+      "name": "Delhi",
+      "state": "Delhi",
+      "latitude": 28.6139,
+      "longitude": 77.2090,
+      "elevation_m": 212,
+      "zone": "Indo-Gangetic Plain"
+    },
+    {
+      "id": "D04",
+      "name": "Patna",
+      "state": "Bihar",
+      "latitude": 25.5941,
+      "longitude": 85.1376,
+      "elevation_m": 55,
+      "zone": "Middle Gangetic Plain"
+    },
+    {
+      "id": "D05",
+      "name": "Jaipur",
+      "state": "Rajasthan",
+      "latitude": 26.9124,
+      "longitude": 75.7873,
+      "elevation_m": 433,
+      "zone": "Semi-Arid Aravalli"
+    },
+    {
+      "id": "D06",
+      "name": "Ahmedabad",
+      "state": "Gujarat",
+      "latitude": 23.0225,
+      "longitude": 72.5714,
+      "elevation_m": 49,
+      "zone": "Western Plain"
+    },
+    {
+      "id": "D07",
+      "name": "Bhopal",
+      "state": "Madhya Pradesh",
+      "latitude": 23.2599,
+      "longitude": 77.4126,
+      "elevation_m": 495,
+      "zone": "Central Malwa Plateau"
+    },
+    {
+      "id": "D08",
+      "name": "Nagpur",
+      "state": "Maharashtra",
+      "latitude": 21.1458,
+      "longitude": 79.0882,
+      "elevation_m": 309,
+      "zone": "Vidarbha Plain"
+    },
+    {
+      "id": "D09",
+      "name": "Bhubaneswar",
+      "state": "Odisha",
+      "latitude": 20.2961,
+      "longitude": 85.8245,
+      "elevation_m": 46,
+      "zone": "Eastern Coastal Plain"
+    },
+    {
+      "id": "D10",
+      "name": "Kolkata",
+      "state": "West Bengal",
+      "latitude": 22.5726,
+      "longitude": 88.3639,
+      "elevation_m": 16,
+      "zone": "Lower Gangetic Delta"
+    },
+    {
+      "id": "D11",
+      "name": "Mumbai",
+      "state": "Maharashtra",
+      "latitude": 19.0760,
+      "longitude": 72.8777,
+      "elevation_m": 5,
+      "zone": "Western Coastal Plain"
+    },
+    {
+      "id": "D12",
+      "name": "Goa",
+      "state": "Goa",
+      "latitude": 15.4909,
+      "longitude": 73.8278,
+      "elevation_m": 56,
+      "zone": "Konkan Coastal Belt"
+    },
+    {
+      "id": "D13",
+      "name": "Bengaluru",
+      "state": "Karnataka",
+      "latitude": 12.9716,
+      "longitude": 77.5946,
+      "elevation_m": 914,
+      "zone": "South Deccan / Mysore Plateau"
+    },
+    {
+      "id": "D14",
+      "name": "Hyderabad",
+      "state": "Telangana",
+      "latitude": 17.3850,
+      "longitude": 78.4867,
+      "elevation_m": 505,
+      "zone": "Telangana Plateau"
+    },
+    {
+      "id": "D15",
+      "name": "Ooty",
+      "state": "Tamil Nadu",
+      "latitude": 11.4102,
+      "longitude": 76.6950,
+      "elevation_m": 2238,
+      "zone": "Nilgiri Mountain Massif"
+    }
+  ],
+  "folds": {
+    "1": ["D05", "D10", "D15"],
+    "2": ["D04", "D09", "D14"],
+    "3": ["D03", "D08", "D13"],
+    "4": ["D02", "D07", "D12"],
+    "5": ["D01", "D06", "D11"]
+  },
+  "temporal_split": {
+    "train_end": "2024-08-21T23:00:00",
+    "test_start": "2024-08-22T00:00:00"
+  }
+}

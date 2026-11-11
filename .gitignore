@@ -1,0 +1,63 @@
+# Python bytecode & caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Environment variables & secrets
+.env
+.env.local
+.env.*.local
+
+# Large geospatial Parquet datasets (>100 MB GitHub limit)
+# Reconstruct locally via: python scripts/build_boundary_dataset.py
+data/raw/LGD_panchayats.parquet
+data/processed/panchayat_boundaries.parquet
+data/processed/panchayat_lookup.csv
+data/processed/pilot_mohmadpur_deopar.geojson
+data/processed/pusa_panchayats.geojson
+data/processed/boundary_validation_report.json
+
+# Restricted third-party station data & derived pilot benchmark artifacts
+# (ISRO MOSDAC Terms & Conditions prohibit redistributing raw or derived
+# MOSDAC AWS data without a signed SAC/ISRO redistribution agreement)
+data/raw/mosdac_aws.csv
+data/raw/mosdac_aws/
+data/processed/mosdac_aws_normalized.csv
+data/processed/historical_aws_normalized.parquet
+data/processed/historical_reanalysis_baseline.parquet
+data/raw/era5land/era5land_lat*.json
+reports/historical_aws_report.json
+reports/mosdac_aws_quality_report.json
+reports/pilot_station_spatial_validation.json
+reports/benchmark_metrics_station.json
+reports/forecast_provenance.json
+
+# Ad-hoc runtime map click caches (keep only the 15 benchmark stations D01-D15)
+data/raw/gfs/gfs_lat*.json
+data/raw/terrain/terrain_custom_*.json
+
+# Synthetic / schematic plots in results/figures/ (excluded from initial public release)
+results/figures/07_predicted_vs_reference_temperature.png
+results/figures/08_residual_distribution.png
+results/figures/09_uncertainty_conformal_intervals.png
+results/figures/10_topographic_transect.png
+
+# Scratch & local experiment artifacts (not part of the repository)
+scratch/
+brag/
+brag-about-*/
+brag-output-*/
+
+# OS & IDE metadata
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

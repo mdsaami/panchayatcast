@@ -1,0 +1,7 @@
+Model,Spatial_MAE,Spatial_MAE_Std,Spatial_RMSE,Spatial_RMSE_Std,MAE_Reduction_Pct,RMSE_Reduction_Pct
+Raw_GFS_Baseline,1.6614,0.0,2.1922,0.0,0.0,0.0
+Model_1_Weather_Time,0.7907,0.0315,1.0347,0.0391,52.41,52.8
+Model_B1_Point_Elevation,0.808,0.0297,1.0528,0.0406,51.37,51.98
+Model_6_Physical_Terrain,0.8154,0.0694,1.0674,0.0798,50.92,51.31
+NewArch_Stacked_Ensemble,0.8113,0.0567,1.0619,0.0641,51.17,51.56
+NewArch_Multi_Quantile,0.8477,0.0754,1.1017,0.0987,48.98,49.75

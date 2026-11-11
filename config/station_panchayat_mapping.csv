@@ -1,0 +1,2 @@
+station_id,panchayat_id,block_id,station_lat,station_lon,panchayat_lat,panchayat_lon,distance_km,mapping_method,mapping_status,valid_from,valid_to,rationale,source
+TEMPLATE_STATION_01,TEMPLATE_PANCHAYAT_01,TEMPLATE_BLOCK_01,25.98,85.66,26.0,85.7,2.5,nearest_neighbor,candidate,2010-01-01,2099-12-31,Proximity less than 5km,EXAMPLE_AWS

@@ -1,0 +1,8 @@
+Model,Features_Count,Spatial_MAE,Spatial_MAE_Std,Spatial_RMSE,Spatial_RMSE_Std,Temporal_MAE,Temporal_RMSE,Spatiotemporal_MAE,Spatiotemporal_RMSE,Spatial_MAE_Reduction_Pct,Spatial_RMSE_Reduction_Pct
+Model_0_GFS_Baseline,0,1.6614,0.0,2.1922,0.0,1.5078,2.041,1.5078,2.041,0.0,0.0
+Model_1_Weather_Time,9,0.7907,0.0352,1.0347,0.0437,0.7695,1.0024,0.8649,1.1169,47.25,46.82
+Model_B1_Weather_Time_Elevation,10,0.808,0.0332,1.0527,0.0454,0.7524,0.9807,0.876,1.1272,46.18,45.95
+Model_2_Weather_Time_Terrain,17,0.8483,0.0843,1.1004,0.0965,0.7489,0.9832,0.8841,1.1335,43.93,43.84
+Model_3_Weather_Time_Surface,14,0.8426,0.1034,1.1039,0.1268,0.7388,0.9687,0.8966,1.1624,44.84,44.18
+Model_4_Weather_Time_Terrain_Surface,22,0.8481,0.1116,1.111,0.1397,0.746,0.9798,0.8948,1.1526,44.42,43.88
+Model_5_Full_Physiographic_NDVI,23,0.8511,0.1149,1.1131,0.146,0.7609,0.9922,0.9141,1.1701,44.34,43.86

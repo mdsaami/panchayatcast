@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PanchayatCast — Panchayat-Level Weather Intelligence</title>
+  <meta name="description" content="PanchayatCast: Physiographic-aware ML downscaling for Panchayat-level agro-meteorological decision support by Team Nova.">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ═══ HEADER ═══ -->
+  <header class="app-header">
+    <div class="header-content">
+      <div class="logo-group">
+        <div class="brand-name">PanchayatCast</div>
+        <div class="brand-sub">Physiographic-Aware ML Downscaling</div>
+        <div class="brand-tagline">From Block-Level Forecasts to Panchayat-Level Insights</div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero-section">
+    <div class="hero-inner">
+      <p class="hero-text">
+        <strong>Transform coarse weather forecasts</strong> into localized Panchayat-level insights for agro-meteorological decision support.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══ MAIN DASHBOARD ═══ -->
+  <div class="dashboard-container">
+
+    <!-- ── Control Bar ── -->
+    <div class="control-bar">
+      <div class="control-bar-title">Forecast Configuration</div>
+      <div class="control-grid">
+        <div class="form-group">
+          <label for="locationSelect">Study Location</label>
+          <select id="locationSelect">
+            <option value="D01" data-lat="30.3165" data-lon="78.0322" data-name="Dehradun">D01 Dehradun (651 m, Foothills)</option>
+            <option value="D02" data-lat="31.1048" data-lon="77.1734" data-name="Shimla">D02 Shimla (2204 m, High Western Himalayas)</option>
+            <option value="D03" data-lat="28.6139" data-lon="77.2090" data-name="Delhi" selected>D03 Delhi (212 m, Indo-Gangetic Plain)</option>
+            <option value="D04" data-lat="25.5941" data-lon="85.1376" data-name="Patna">D04 Patna (55 m, Middle Gangetic Plain)</option>
+            <option value="D05" data-lat="26.9124" data-lon="75.7873" data-name="Jaipur">D05 Jaipur (433 m, Semi-Arid Aravalli)</option>
+            <option value="D06" data-lat="23.0225" data-lon="72.5714" data-name="Ahmedabad">D06 Ahmedabad (49 m, Western Plain)</option>
+            <option value="D07" data-lat="23.2599" data-lon="77.4126" data-name="Bhopal">D07 Bhopal (495 m, Central Malwa Plateau)</option>
+            <option value="D08" data-lat="21.1458" data-lon="79.0882" data-name="Nagpur">D08 Nagpur (309 m, Vidarbha Plain)</option>
+            <option value="D09" data-lat="20.2961" data-lon="85.8245" data-name="Bhubaneswar">D09 Bhubaneswar (46 m, Eastern Coastal Plain)</option>
+            <option value="D10" data-lat="22.5726" data-lon="88.3639" data-name="Kolkata">D10 Kolkata (16 m, Gangetic Delta)</option>
+            <option value="D11" data-lat="19.0760" data-lon="72.8777" data-name="Mumbai">D11 Mumbai (5 m, West Coast)</option>
+            <option value="D12" data-lat="15.4909" data-lon="73.8278" data-name="Goa">D12 Goa (56 m, Konkan Coast)</option>
+            <option value="D13" data-lat="12.9716" data-lon="77.5946" data-name="Bengaluru">D13 Bengaluru (914 m, Mysore Plateau)</option>
+            <option value="D14" data-lat="17.3850" data-lon="78.4867" data-name="Hyderabad">D14 Hyderabad (505 m, Telangana Plateau)</option>
+            <option value="D15" data-lat="11.4102" data-lon="76.6950" data-name="Ooty">D15 Ooty (2238 m, Nilgiri Mountains)</option>
+          </select>
+        </div>
+        <div class="form-group inline-pair">
+          <label>Coordinates</label>
+          <input type="number" id="latInput" value="28.6139" step="0.0001" placeholder="Lat">
+          <input type="number" id="lonInput" value="77.2090" step="0.0001" placeholder="Lon">
+        </div>
+        <div class="form-group">
+          <label for="cropSelect">Target Crop</label>
+          <select id="cropSelect">
+            <option value="Rice (Paddy)">Rice (Paddy)</option>
+            <option value="Wheat">Wheat</option>
+            <option value="Cotton">Cotton</option>
+            <option value="Maize">Maize</option>
+            <option value="Vegetables (Tomato/Chilli)">Vegetables (Tomato/Chilli)</option>
+            <option value="Grapes">Grapes</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="stageSelect">Growth Stage</label>
+          <select id="stageSelect">
+            <option value="Sowing / Nursery">Sowing / Nursery</option>
+            <option value="Vegetative Growth">Vegetative Growth</option>
+            <option value="Flowering / Heading" selected>Flowering / Heading</option>
+            <option value="Grain Filling / Pod Formation">Grain Filling / Pod Formation</option>
+            <option value="Maturity / Harvest">Maturity / Harvest</option>
+          </select>
+        </div>
+        <div class="form-group" style="justify-content:flex-end;">
+          <button id="btnRunDownscale" class="btn-primary">
+            <span class="spinner"></span>
+            <span class="btn-text">Generate Panchayat Forecast</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Error Card ── -->
+    <div id="errorCard" class="error-card">
+      <strong>Forecast Error:</strong> <span id="errorMessage"></span>
+    </div>
+
+    <!-- ═══ RESULTS AREA ═══ -->
+    <div id="resultsSection" class="results-section">
+
+      <!-- ── KPI Summary ── -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-icon temp">🌡</div>
+          <div class="kpi-title">Existing Forecast</div>
+          <div class="kpi-value" id="kpiBaseline">-- °C</div>
+          <div class="kpi-sub">~25 km GFS grid baseline</div>
+        </div>
+        <div class="kpi-card highlight">
+          <div class="kpi-icon refined">🎯</div>
+          <div class="kpi-title">PanchayatCast Forecast</div>
+          <div class="kpi-value" id="kpiRefined">-- °C</div>
+          <div id="kpiDelta" class="kpi-delta neutral">ΔT: -- °C</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon interval">📊</div>
+          <div class="kpi-title">Confidence</div>
+          <div class="kpi-value" id="kpiInterval">-- to -- °C</div>
+          <div class="kpi-sub" id="kpiConfidence">90% prediction interval</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon risk">⚠️</div>
+          <div class="kpi-title">Weather Risk</div>
+          <div class="kpi-value" id="kpiRisk">--</div>
+          <div class="kpi-sub" id="kpiRiskSub">Overall assessment</div>
+        </div>
+      </div>
+
+
+      <!-- ── Content Grid: Chart + Map ── -->
+      <div class="content-grid">
+        <!-- Hourly Chart -->
+        <div class="card">
+          <div class="card-header">
+            <h3>Hourly Downscaled Temperature</h3>
+            <span id="targetLocationBadge" class="location-badge">Delhi</span>
+          </div>
+          <div class="chart-container">
+            <canvas id="forecastChart"></canvas>
+          </div>
+        </div>
+        <!-- Map -->
+        <div class="card">
+          <div class="card-header">
+            <h3>Location Map</h3>
+            <span style="font-size:0.72rem; color:var(--text-faint);">Click map to select</span>
+          </div>
+          <div class="card-body" style="padding:0;">
+            <div id="map" class="map-container"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Agro-Meteorological Advisory ── -->
+      <div class="card">
+        <div class="card-header">
+          <h3>Actionable Agro-Meteorological Advisory</h3>
+          <span id="overallRiskBadge" class="badge">Evaluating…</span>
+        </div>
+        <div class="card-body">
+          <div id="advisoryContainer" class="advisory-grid">
+            <!-- Populated dynamically by app.js -->
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Physiographic Context ── -->
+      <div class="card">
+        <div class="card-header">
+          <h3>Physiographic Context</h3>
+          <span style="font-size:0.72rem; color:var(--text-faint);">Why PanchayatCast differs from block-level data</span>
+        </div>
+        <div class="card-body">
+          <div class="physio-grid">
+            <div class="physio-item">
+              <div class="physio-val" id="physioElevation">--</div>
+              <div class="physio-label">Elevation (m)</div>
+            </div>
+            <div class="physio-item">
+              <div class="physio-val" id="physioSlope">--</div>
+              <div class="physio-label">Slope (°)</div>
+            </div>
+            <div class="physio-item">
+              <div class="physio-val" id="physioAspect">--</div>
+              <div class="physio-label">Aspect (°)</div>
+            </div>
+            <div class="physio-item">
+              <div class="physio-val" id="physioCropland">--</div>
+              <div class="physio-label">Cropland Fraction</div>
+            </div>
+            <div class="physio-item">
+              <div class="physio-val" id="physioDiscrepancy">--</div>
+              <div class="physio-label">Elev. Discrepancy (m)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Topographic Transect ── -->
+      <div class="card">
+        <div class="card-header">
+          <h3>Sub-Grid Topographic Transect Analysis</h3>
+          <select id="transectSelect" class="transect-select">
+            <option value="dehradun_mussoorie">Dehradun Valley to Mussoorie Ridge (640m – 2275m)</option>
+            <option value="pune_ghats">Pune Plateau to Western Ghats (25m – 880m)</option>
+          </select>
+        </div>
+        <div class="chart-container-small">
+          <canvas id="transectChart"></canvas>
+        </div>
+      </div>
+
+      <!-- ── Prototype Status ── -->
+
+    </div><!-- /resultsSection -->
+
+  </div><!-- /dashboard-container -->
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="app-footer">
+    <div class="footer-inner">
+      <div>
+        <span class="footer-brand">PanchayatCast</span> • Weather Intelligence Platform • Team Nova
+      </div>
+      <div class="footer-notice">
+        Coarse GFS (~25 km) downscaled via statistical ML residual offset learning. High-resolution 30m SRTM terrain does not imply 30m weather resolution. Validated against ECMWF ERA5-Land reanalysis (~9–11 km). Independent station validation pending.
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

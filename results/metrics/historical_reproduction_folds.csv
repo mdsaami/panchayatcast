@@ -1,0 +1,6 @@
+Fold,Test Locations,GFS MAE (°C),Model A MAE (°C),Model B1 MAE (°C),Delta (B1 - A) (°C),Verdict
+1,"D05,D10,D15",1.6035,0.8172,0.8193,0.0021,Worsened
+2,"D04,D09,D14",2.0878,0.8246,0.8363,0.0117,Worsened
+3,"D03,D08,D13",2.0459,0.7991,0.8388,0.0397,Worsened
+4,"D02,D07,D12",0.8326,0.7547,0.7669,0.0122,Worsened
+5,"D01,D06,D11",1.7372,0.751,0.778,0.027,Worsened

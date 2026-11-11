@@ -1,0 +1,12 @@
+{
+  "elevation_local": 53.0,
+  "slope_deg": 0.697,
+  "aspect_deg": 99.46,
+  "aspect_sin": 0.9864,
+  "aspect_cos": -0.1644,
+  "relief_500m": 14.0,
+  "relief_1000m": 11.0,
+  "elev_std_1000m": 2.83,
+  "dz_dx": -0.012,
+  "dz_dy": -0.002
+}
